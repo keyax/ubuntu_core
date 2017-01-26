@@ -1,1 +1,1 @@
-# ubuntu-core
+# ubuntu-core image for docker
