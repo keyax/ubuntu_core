@@ -1,4 +1,4 @@
-# ubuntu-core image for docker
+# ubuntu-core image for docker minimal
 Supported tags and respective Dockerfile links
 16.10, yakkety-20170104, yakkety (yakkety/Dockerfile)
 
