@@ -1,5 +1,7 @@
-MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
 FROM scratch
+
+MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
+
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
