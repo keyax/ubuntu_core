@@ -1,3 +1,4 @@
+MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
 FROM scratch
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 
