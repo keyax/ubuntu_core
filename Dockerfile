@@ -51,9 +51,10 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
-		dirmngr \
 		curl \
+		dirmngr \
 		wget \
+		xz-utils \
 	&& rm -rf /var/lib/apt/lists/*
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
