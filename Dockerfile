@@ -51,6 +51,7 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
+		dirmngr \
 		curl \
 		wget \
 	&& rm -rf /var/lib/apt/lists/*
