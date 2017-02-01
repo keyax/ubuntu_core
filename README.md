@@ -1,4 +1,4 @@
-# ubuntu-core image for docker minimal os
+# ubuntu-core image for docker minimal os release
 [![](https://images.microbadger.com/badges/image/keyax/ubuntu_core.svg)](https://microbadger.com/images/keyax/ubuntu_core "Get your own image badge on microbadger.com")   [![](https://images.microbadger.com/badges/version/keyax/ubuntu_core.svg)](https://microbadger.com/images/keyax/ubuntu_core "Get your own version badge on microbadger.com")
 
 Supported tags and respective Dockerfile links
