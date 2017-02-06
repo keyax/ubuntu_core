@@ -53,6 +53,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
 		dirmngr \
+    python3 \
+		python3-pip \
 		wget \
 		xz-utils \
 	&& rm -rf /var/lib/apt/lists/*
