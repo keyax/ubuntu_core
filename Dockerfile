@@ -32,7 +32,7 @@ RUN set -xe \
 	&& echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
 
 # delete all the apt list files since they're big and get stale quickly
-  && rm -rf /var/lib/apt/lists/*
+# RUN rm -rf /var/lib/apt/lists/*
 # this forces "apt-get update" in dependent images, which is also good
 
 # enable the universe
