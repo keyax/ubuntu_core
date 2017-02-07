@@ -1,8 +1,10 @@
 FROM scratch
 
-LABEL maintainer "yones.lebady AT gmail.com")
-# MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
-
+LABEL maintainer= "yones.lebady AT gmail.com" \
+      net.keyax.os= "ubuntu core" \
+      net.keyax.os.ver= "16.10 yaketty" \
+      net.keyax.vendor= "Keyax" \
+  
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
@@ -37,7 +39,7 @@ RUN set -xe \
 	&& echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
 
 # delete all the apt list files since they're big and get stale quickly
-RUN rm -rf /var/lib/apt/lists/*
+# RUN rm -rf /var/lib/apt/lists/*
 # this forces "apt-get update" in dependent images, which is also good
 
 # enable the universe
@@ -46,9 +48,6 @@ RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 # make systemd-detect-virt return "docker"
 # See: https://github.com/systemd/systemd/blob/aa0c34279ee40bce2f9681b496922dedbadfca19/src/basic/virt.c#L434
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
-
-# overwrite this with 'CMD []' in a dependent Dockerfile
-# CMD ["/bin/bash"]
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
