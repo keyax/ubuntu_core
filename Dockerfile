@@ -1,10 +1,10 @@
 FROM scratch
 
-LABEL maintainer= "yones.lebady AT gmail.com" \
+LABEL maintainer "yones.lebady AT gmail.com" \
       net.keyax.os= "ubuntu core" \
       net.keyax.os.ver= "16.10 yaketty" \
       net.keyax.vendor= "Keyax" \
-  
+
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
