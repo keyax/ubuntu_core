@@ -54,6 +54,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
 		dirmngr \
+		nano \
     python3 \
 		python3-pip \
 		wget \
