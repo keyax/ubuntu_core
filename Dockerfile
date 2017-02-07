@@ -1,6 +1,7 @@
 FROM scratch
 
-MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
+LABEL maintainer "yones.lebady AT gmail.com")
+# MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
 
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 
@@ -57,7 +58,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		python3-pip \
 		wget \
 		xz-utils \
-	&& rm -rf /var/lib/apt/lists/*
+  	&& rm -rf /var/lib/apt/lists/*
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
