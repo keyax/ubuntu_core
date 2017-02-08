@@ -1,9 +1,9 @@
 FROM scratch
 
 LABEL maintainer "yones.lebady AT gmail.com"
-# LABEL net.keyax.os= "ubuntu core" \
-#      net.keyax.os.ver= "16.10 yaketty" \
-#      net.keyax.vendor= "Keyax"
+LABEL "net.keyax.os=ubuntu core" \
+      "net.keyax.os.ver=16.10 yaketty" \
+      "net.keyax.vendor=Keyax"
 
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 
@@ -32,7 +32,7 @@ RUN set -xe \
 	&& echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
 
 # delete all the apt list files since they're big and get stale quickly
-# RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
 # this forces "apt-get update" in dependent images, which is also good
 
 # enable the universe
