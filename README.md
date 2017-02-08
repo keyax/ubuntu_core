@@ -1,12 +1,17 @@
-# ubuntu-core image for docker minimal os release 2.038
+# ubuntu-core image for docker minimal os release
+
+Keyax built of linux Ubuntu Core container
+
+This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 16.10 code named yakkety and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
+
+Supported tags and respective Dockerfile links:
+16.10, yakkety, keyax, swarm
+
+The information about the virtual/transfer sizes and individual layers of the image is provided by Imagebadger as follows:
+
 [![](https://images.microbadger.com/badges/image/keyax/ubuntu_core.svg)](https://microbadger.com/images/keyax/ubuntu_core "Get your own image badge on microbadger.com")   [![](https://images.microbadger.com/badges/version/keyax/ubuntu_core.svg)](https://microbadger.com/images/keyax/ubuntu_core "Get your own version badge on microbadger.com")
 
-Supported tags and respective Dockerfile links
-16.10, yakkety-20170104, yakkety (yakkety/Dockerfile)
-
 For more information about this image and its history, please see the relevant manifest file (library/ubuntu).
-
-For detailed information about the virtual/transfer sizes and individual layers of each of the above supported tags, please see the repos/ubuntu/tag-details.md file in the docker-library/repo-info GitHub repo.
 
 What is Ubuntu?
 Ubuntu is a Debian-based Linux operating system, with Unity as its default desktop environment. It is based on free software and named after the Southern African philosophy of ubuntu (literally, "human-ness"), which often is translated as "humanity towards others" or "the belief in a universal bond of sharing that connects all humanity".
@@ -15,54 +20,12 @@ Development of Ubuntu is led by UK-based Canonical Ltd., a company owned by Sout
 
 wikipedia.org/wiki/Ubuntu_(operating_system)
 
-
-
 What's in this image?
 This image is built from official rootfs tarballs provided by Canonical (specifically, https://partner-images.canonical.com/core/).
 
 The ubuntu:latest tag points to the "latest LTS", since that's the version recommended for general use.
 
 Along a similar vein, the ubuntu:devel tag is an alias for whichever release the "devel" suite on the mirrors currently points to, as determined by the following one-liner: wget -qO- http://archive.ubuntu.com/ubuntu/dists/devel/Release | awk -F ': ' '$1 == "Codename" { print $2; exit }'
-
-/etc/apt/sources.list
-ubuntu:16.04
-$ docker run ubuntu:16.04 grep -v '^#' /etc/apt/sources.list
-
-deb http://archive.ubuntu.com/ubuntu/ xenial main restricted
-deb-src http://archive.ubuntu.com/ubuntu/ xenial main restricted
-
-deb http://archive.ubuntu.com/ubuntu/ xenial-updates main restricted
-deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates main restricted
-
-deb http://archive.ubuntu.com/ubuntu/ xenial universe
-deb-src http://archive.ubuntu.com/ubuntu/ xenial universe
-deb http://archive.ubuntu.com/ubuntu/ xenial-updates universe
-deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates universe
-
-
-deb http://archive.ubuntu.com/ubuntu/ xenial-security main restricted
-deb-src http://archive.ubuntu.com/ubuntu/ xenial-security main restricted
-deb http://archive.ubuntu.com/ubuntu/ xenial-security universe
-deb-src http://archive.ubuntu.com/ubuntu/ xenial-security universe
-ubuntu:14.04
-$ docker run ubuntu:14.04 grep -v '^#' /etc/apt/sources.list
-
-deb http://archive.ubuntu.com/ubuntu/ trusty main restricted
-deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted
-
-deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted
-
-deb http://archive.ubuntu.com/ubuntu/ trusty universe
-deb-src http://archive.ubuntu.com/ubuntu/ trusty universe
-deb http://archive.ubuntu.com/ubuntu/ trusty-updates universe
-deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates universe
-
-
-deb http://archive.ubuntu.com/ubuntu/ trusty-security main restricted
-deb-src http://archive.ubuntu.com/ubuntu/ trusty-security main restricted
-deb http://archive.ubuntu.com/ubuntu/ trusty-security universe
-deb-src http://archive.ubuntu.com/ubuntu/ trusty-security universe
 
 Supported Docker versions
 This image is officially supported on Docker version 1.13.0.
