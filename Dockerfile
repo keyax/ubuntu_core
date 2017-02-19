@@ -43,14 +43,23 @@ RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+
+# for building Couchbase Nodejs driver from source : manke gcc ...
+    build-essential \
+# openssl
 		ca-certificates \
+# download binaries for Nodejs
 		curl \
+# certificates manager x.509  CRL OCSP GnuPG
 		dirmngr \
 		nano \
     python \
+# download binaries for Couchbase
 		wget \
+# tar.xz compression libraries for Nodejs install
 		xz-utils \
-  	&& rm -rf /var/lib/apt/lists/*
+		&& apt-get autoremove && apt-get clean \
+  	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
