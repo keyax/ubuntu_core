@@ -31,10 +31,6 @@ RUN set -xe \
 # https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L134-L151
 	&& echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
 
-# delete all the apt list files since they're big and get stale quickly
-# RUN rm -rf /var/lib/apt/lists/*
-# this forces "apt-get update" in dependent images, which is also good
-
 # enable the universe
 RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 
@@ -43,7 +39,6 @@ RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-
 # for building Couchbase Nodejs driver from source : manke gcc ...
     build-essential \
 # openssl
@@ -59,7 +54,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # tar.xz compression libraries for Nodejs install
 		xz-utils \
 		&& apt-get autoremove && apt-get clean \
+# delete all the apt list files since they're big and get stale quickly
   	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# this forces "apt-get update" in dependent images, which is also good
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
