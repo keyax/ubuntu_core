@@ -2,7 +2,7 @@ FROM scratch
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="16.10 yaketty" \
+      keyax.os.ver="16.10 yakkety" \
       keyax.vendor="Keyax"
 
 ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
