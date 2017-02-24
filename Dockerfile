@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 		dirmngr \
 		nano \
     python \
-    ssh-server \
+    openssh-server \
 # download binaries for Couchbase
 		wget \
 # tar.xz compression libraries for Nodejs install
