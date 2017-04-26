@@ -2,7 +2,7 @@
 
 Keyax built of linux Ubuntu Core container
 
-This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 16.10 code named yakkety and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
+This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 17.04 code named zesty and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
 
 Supported tags and respective Dockerfile links:
 # 16.10, yakkety, keyax, swarm
