@@ -1,4 +1,4 @@
-# ubuntu-core image for docker minimal os release
+# ubuntu-core image for docker minimal os  release
 
 Keyax built of linux Ubuntu Core container
 
