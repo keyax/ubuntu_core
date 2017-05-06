@@ -2,11 +2,12 @@ FROM scratch
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="17.04 zesty" \
+      keyax.os.ver="16.04 xenial" \
       keyax.vendor="Keyax"
 
+ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 # ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
-ADD ubuntu-zesty-core-cloudimg-amd64-root.tar.gz /
+# ADD ubuntu-zesty-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
 # see https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap
