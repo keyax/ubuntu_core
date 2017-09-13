@@ -2,11 +2,10 @@ FROM scratch
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="16.04 xenial" \
+      keyax.os.ver="16.04.3 xenial" \
       keyax.vendor="Keyax"
 
 ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
-# ADD ubuntu-yakkety-core-cloudimg-amd64-root.tar.gz /
 # ADD ubuntu-zesty-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
@@ -52,6 +51,8 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 		nano \
     python \
     openssh-server \
+#   nfs-common \
+#   nfs-kernel-server \
 # download binaries for Couchbase
 		wget \
 # tar.xz compression libraries for Nodejs install
