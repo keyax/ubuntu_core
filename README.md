@@ -4,10 +4,9 @@ Keyax built of linux Ubuntu Core container
 
 This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 18.04 code named Bionic Beaver and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
 
-Supported tags and respective Dockerfile links:
-18.04, keyax, bionic, swarm
-#16.04.3, xenial, keyax, swarm
-# 17.04, zesty, keyax, swarm
+Supported tags and respective Dockerfile links: 18.04, keyax, bionic, docker, swarm
+
+# 18.04, keyax, bionic, docker, swarm
 
 The information about the virtual/transfer sizes and individual layers of the image is provided by Imagebadger as follows:
 
