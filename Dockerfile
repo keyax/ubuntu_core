@@ -56,6 +56,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # openssl
   	ca-certificates \
     openssh-server \
+    gnupg2 \
 # certificates manager x.509  CRL OCSP GnuPG
 		dirmngr \
 		nano \
@@ -70,6 +71,9 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # delete all the apt list files since they're big and get stale quickly
   	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # this forces "apt-get update" in dependent images, which is also good
+
+# sudo apt-get remove gnupg
+# sudo ln -s /usr/bin/gpg2 /usr/bin/gpg
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
