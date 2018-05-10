@@ -1,11 +1,12 @@
-# ubuntu-core image for docker minimal os  release 16.04.3 LTS
+# ubuntu-core image for docker minimal os  release 18.04 LTS Bionic Beaver
 
 Keyax built of linux Ubuntu Core container
 
-This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 17.04 code named zesty and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
+This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 18.04 code named Bionic Beaver and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
 
 Supported tags and respective Dockerfile links:
-16.04.3, xenial, keyax, swarm
+18.04, keyax, bionic, swarm
+#16.04.3, xenial, keyax, swarm
 # 17.04, zesty, keyax, swarm
 
 The information about the virtual/transfer sizes and individual layers of the image is provided by Imagebadger as follows:
@@ -29,7 +30,7 @@ The ubuntu:latest tag points to the "latest LTS", since that's the version recom
 Along a similar vein, the ubuntu:devel tag is an alias for whichever release the "devel" suite on the mirrors currently points to, as determined by the following one-liner: wget -qO- http://archive.ubuntu.com/ubuntu/dists/devel/Release | awk -F ': ' '$1 == "Codename" { print $2; exit }'
 
 Supported Docker versions
-This image is officially supported on Docker version 17.04.
+This image is officially supported on Docker version 18.04.
 
 Support for older versions (down to 1.6) is provided on a best-effort basis.
 
