@@ -2,10 +2,17 @@ FROM scratch
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="16.04.3 xenial" \
+      keyax.os.ver="18.04 bionic" \
       keyax.vendor="Keyax"
 
-ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
+# https://cloud-images.ubuntu.com (128MB)
+# wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-root.tar.xz
+
+# https://partner-images.canonical.com/core/ (bionic 30MB)(xenial 46MB)
+# wget https://partner-images.canonical.com/core/xenial/current/ubuntu-bionic-core-cloudimg-amd64-root.tar.gz
+ADD ubuntu-bionic-core-cloudimg-amd64-root.tar.gz /
+# wget https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz
+## ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 # ADD ubuntu-zesty-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
