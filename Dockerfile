@@ -8,12 +8,10 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 # https://cloud-images.ubuntu.com (128MB)
 # wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-root.tar.xz
 
-# https://partner-images.canonical.com/core/ (bionic 30MB)(xenial 46MB)
-# wget https://partner-images.canonical.com/core/xenial/current/ubuntu-bionic-core-cloudimg-amd64-root.tar.gz
+# wget https://partner-images.canonical.com/core/bionic/current/ubuntu-bionic-core-cloudimg-amd64-root.tar.gz  (30MB) 
 ADD ubuntu-bionic-core-cloudimg-amd64-root.tar.gz /
-# wget https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz
+# wget https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz  (46MB)
 ## ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
-# ADD ubuntu-zesty-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
 # see https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap
@@ -51,7 +49,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 #    build-essential \
 # download binaries for Nodejs
 		curl \
-# download binaries for Couchbase
+# download binaries for gosu, MongoDB, Couchbase
 		wget \
 # openssl
   	ca-certificates \
@@ -67,6 +65,8 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 #   nfs-kernel-server \
 # tar.xz compression libraries for Nodejs install
 		xz-utils \
+# to disable numa for MongoDB
+    numactl \
 		&& apt-get autoremove && apt-get clean \
 # delete all the apt list files since they're big and get stale quickly
   	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
