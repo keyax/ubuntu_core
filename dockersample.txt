@@ -1,0 +1,25 @@
+[yones@keyax57 .sh]$ docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+keyax/node_core             <none>              2d368425e887        2 hours ago         336MB
+keyax/mongo_core            <none>              feac43af0ba9        18 hours ago        416MB
+keyax/nginx_core            latest              3c66288a6b8e        2 weeks ago         186MB
+portainer/portainer         latest              a64783906447        8 months ago        11MB
+dockersamples/visualizer    latest              8ba176c7fce2        9 months ago        148MB
+blockbridge/volume-driver   latest              b29e33f6f974        15 months ago       629MB
+couchbase                   latest              855e0c4b44a1        16 months ago       569MB
+swarm                       latest              36b1e23becab        16 months ago       15.9MB
+centos                      centos7             67591570dd29        17 months ago       192MB
+manomarks/visualizer        beta                4a047bf4cf92        19 months ago       325MB
+couchbase/sync-gateway      latest              e47a60ebeae9        20 months ago       318MB
+arungupta/couchbase-node    latest              b7c56254d7f9        2 years ago         375MB
+progrium/consul             latest              09ea64205e55        2 years ago         69.4MB
+[yones@keyax57 .sh]$
+
+
+[yones@keyax57 .sh]$ docker system prune -a
+WARNING! This will remove:
+        - all stopped containers
+        - all networks not used by at least one container
+        - all images without at least one container associated to them
+        - all build cache
+Are you sure you want to continue? [y/N] y

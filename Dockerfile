@@ -8,7 +8,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 # https://cloud-images.ubuntu.com (128MB)
 # wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-root.tar.xz
 
-# wget https://partner-images.canonical.com/core/bionic/current/ubuntu-bionic-core-cloudimg-amd64-root.tar.gz  (30MB) 
+# wget https://partner-images.canonical.com/core/bionic/current/ubuntu-bionic-core-cloudimg-amd64-root.tar.gz  (30MB)
 ADD ubuntu-bionic-core-cloudimg-amd64-root.tar.gz /
 # wget https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz  (46MB)
 ## ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
@@ -74,6 +74,13 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 
 # sudo apt-get remove gnupg
 # sudo ln -s /usr/bin/gpg2 /usr/bin/gpg
+
+# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+#RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
+RUN  groupadd --gid 11000 kyxgrp \
+  && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --create-home kyxusr
+USER kyxusr
+# WORKDIR /home/kyxusr
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
