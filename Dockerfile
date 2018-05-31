@@ -80,7 +80,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 RUN echo root:rootpwd | chpasswd
 RUN  groupadd --gid 11000 kyxgrp \
   && useradd  --uid 11000 --gid kyxgrp --password kyxpwd kyxusr \
-  && chown
+  && chown -R kyxusr:kyxgrp /home/kyxusr
 # && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
 USER kyxusr
 WORKDIR /home/kyxusr
