@@ -103,9 +103,11 @@ RUN set -ex; \
   gpg2 --armor --export $key | apt-key add - ; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
-	chmod +x /usr/local/bin/gosu;
+	chmod +x /usr/local/bin/gosu; \
+  mkdir -m777 -p -v /home/kyxusr; \
+  chown -R kyxusr:kyxgrp /home/kyxusr;
 #  gosu nobody true; \
-RUN /usr/local/bin/gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
+##RUN /usr/local/bin/gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
 
 USER kyxusr
 
