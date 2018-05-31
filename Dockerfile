@@ -77,7 +77,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 
 # grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
 ENV JSYAML_VERSION 3.10.0
-RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
+###RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 
 # grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
