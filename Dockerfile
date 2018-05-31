@@ -75,14 +75,39 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # sudo apt-get remove gnupg
 # sudo ln -s /usr/bin/gpg2 /usr/bin/gpg
 
+# grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
+ENV JSYAML_VERSION 3.10.0
+wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
+# TODO some sort of download verification here
+
+# grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
+ENV GOSU_VERSION 1.10
+RUN set -ex; \
+	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
+	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
+#	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
+#	export GNUPGHOME="$(mktemp -d)"; \
+	gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
+  #   gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; || \
+  #   gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
+  #   gpg2 --keyserver pgp.mit.edu --recv-keys "$key" || \
+  #   gpg2 --keyserver keyserver.pgp.com --recv-keys "$key"; \
+  gpg2 --armor --export $key | apt-key add - ; \
+##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
+#	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
+	chmod +x /usr/local/bin/gosu; \
+#  gosu nobody true; \
+  gosu 11000:11000 mkdir /home/kyxusr; 
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 #RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
-RUN  groupadd --gid 11000 kyxgrp
-RUN useradd  --uid 11000 --gid kyxgrp --home-dir /home/kyxusr kyxusr \
- && chown -R kyxusr:kyxgrp /home/kyxusr
+RUN  groupadd --gid 11000 kyxgrp \
+  && useradd --uid 11000 --gid kyxgrp kyxusr \
+### && chown -R kyxusr:kyxgrp /home/kyxusr
 # && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
-RUN echo root:rootpwd | chpasswd
+###RUN echo root:rootpwd | chpasswd
 USER kyxusr
+
 WORKDIR /home/kyxusr
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
