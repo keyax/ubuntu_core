@@ -97,7 +97,7 @@ RUN set -ex; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
 #  gosu nobody true; \
-  gosu 11000:11000 mkdir /home/kyxusr;
+  gosu 11000:11000 bash -c 'mkdir /home/kyxusr;'
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 #RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
