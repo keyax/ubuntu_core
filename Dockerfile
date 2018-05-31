@@ -77,7 +77,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 
 # grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
 ENV JSYAML_VERSION 3.10.0
-wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
+RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 
 # grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
@@ -97,12 +97,12 @@ RUN set -ex; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
 #  gosu nobody true; \
-  gosu 11000:11000 mkdir /home/kyxusr; 
+  gosu 11000:11000 mkdir /home/kyxusr;
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 #RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
 RUN  groupadd --gid 11000 kyxgrp \
-  && useradd --uid 11000 --gid kyxgrp kyxusr \
+  && useradd --uid 11000 --gid kyxgrp kyxusr
 ### && chown -R kyxusr:kyxgrp /home/kyxusr
 # && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
 ###RUN echo root:rootpwd | chpasswd
