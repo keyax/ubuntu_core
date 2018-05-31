@@ -110,7 +110,7 @@ RUN set -ex; \
 ##RUN /usr/local/bin/gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
 
 
-USER kyxusr
+## USER kyxusr
 
 WORKDIR /home/kyxusr
 
