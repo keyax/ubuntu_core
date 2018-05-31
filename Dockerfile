@@ -78,7 +78,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 #RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
 RUN  groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11000 --gid kyxgrp --password kyxpwd kyxusr \
+  && useradd  --uid 11000 --gid kyxgrp kyxusr \
   && chown -R kyxusr:kyxgrp /home/kyxusr
 # && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
 RUN echo root:rootpwd | chpasswd
