@@ -75,6 +75,14 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # sudo apt-get remove gnupg
 # sudo ln -s /usr/bin/gpg2 /usr/bin/gpg
 
+# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+#RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
+RUN  groupadd --gid 11000 kyxgrp \
+  && useradd --uid 11000 --gid kyxgrp --no-create-home kyxusr
+### && chown -R kyxusr:kyxgrp /home/kyxusr
+# && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
+###RUN echo root:rootpwd | chpasswd
+
 # grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
 ENV JSYAML_VERSION 3.10.0
 ###RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
@@ -95,17 +103,10 @@ RUN set -ex; \
   gpg2 --armor --export $key | apt-key add - ; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
-	chmod +x /usr/local/bin/gosu; \
+	chmod +x /usr/local/bin/gosu;
 #  gosu nobody true; \
-  gosu 11000:11000 bash -c 'mkdir /home/kyxusr;'
+RUN gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-#RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
-RUN  groupadd --gid 11000 kyxgrp \
-  && useradd --uid 11000 --gid kyxgrp --no-create-home kyxusr
-### && chown -R kyxusr:kyxgrp /home/kyxusr
-# && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
-###RUN echo root:rootpwd | chpasswd
 USER kyxusr
 
 WORKDIR /home/kyxusr
