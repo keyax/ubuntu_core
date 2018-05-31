@@ -105,7 +105,7 @@ RUN set -ex; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu;
 #  gosu nobody true; \
-RUN gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
+RUN /usr/local/bin/gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
 
 USER kyxusr
 
