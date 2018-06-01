@@ -76,17 +76,11 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # sudo ln -s /usr/bin/gpg2 /usr/bin/gpg
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-#RUN groupadd -r -g 10000 kyxgrp && useradd -r -g kyxgrp 10000 kyxusr
 RUN  groupadd --gid 11000 kyxgrp \
   && useradd --uid 11000 --gid kyxgrp --no-create-home kyxusr
-### && chown -R kyxusr:kyxgrp /home/kyxusr
+  && chown -R kyxusr:kyxgrp /home
 # && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
 ###RUN echo root:rootpwd | chpasswd
-
-# grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
-ENV JSYAML_VERSION 3.10.0
-###RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
-# TODO some sort of download verification here
 
 # grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
 ENV GOSU_VERSION 1.10
@@ -108,11 +102,13 @@ RUN set -ex; \
   chown -R kyxusr:kyxgrp /home/kyxusr;
 #  gosu nobody true; \
 ##RUN /usr/local/bin/gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
-
-
 ## USER kyxusr
+WORKDIR /home
 
-WORKDIR /home/kyxusr
+# grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
+ENV JSYAML_VERSION 3.10.0
+###RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
+# TODO some sort of download verification here
 
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
