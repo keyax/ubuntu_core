@@ -75,13 +75,6 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # sudo apt-get remove gnupg
 # sudo ln -s /usr/bin/gpg2 /usr/bin/gpg
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN  groupadd --gid 11000 kyxgrp \
-  && useradd --uid 11000 --gid kyxgrp --no-create-home kyxusr
-  && chown -R kyxusr:kyxgrp /home
-# && useradd  --uid 11000 --gid kyxgrp --shell /bin/bash --home-dir /home/kyxusr --password kyxpwd kyxusr
-###RUN echo root:rootpwd | chpasswd
-
 # grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
 ENV GOSU_VERSION 1.10
 RUN set -ex; \
@@ -98,11 +91,7 @@ RUN set -ex; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-  mkdir -m777 -p -v /home/kyxusr; \
-  chown -R kyxusr:kyxgrp /home/kyxusr;
 #  gosu nobody true; \
-##RUN /usr/local/bin/gosu kyxusr:kyxgrp bash -c 'mkdir -m777 -p -v /home/kyxusr;';
-## USER kyxusr
 WORKDIR /home
 
 # grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
