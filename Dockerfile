@@ -91,8 +91,9 @@ RUN set -ex; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-#  gosu nobody true; \
-WORKDIR /home
+  gosu nobody true; \
+
+#WORKDIR /home
 
 # grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
 ENV JSYAML_VERSION 3.10.0
