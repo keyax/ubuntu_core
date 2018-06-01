@@ -91,14 +91,13 @@ RUN set -ex; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-  gosu nobody true; \
-
-#WORKDIR /home
+  gosu nobody true;
 
 # grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
 ENV JSYAML_VERSION 3.10.0
 ###RUN wget -O /home/kyxusr/js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 
+#WORKDIR /home
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
