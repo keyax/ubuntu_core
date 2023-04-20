@@ -2,16 +2,16 @@ FROM scratch
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="18.04 bionic" \
+      keyax.os.ver="22.04 jammy" \
       keyax.vendor="Keyax"
 
 # https://cloud-images.ubuntu.com (128MB)
 # wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-root.tar.xz
 
-# wget https://partner-images.canonical.com/core/bionic/current/ubuntu-bionic-core-cloudimg-amd64-root.tar.gz  (30MB)
-ADD ubuntu-bionic-core-cloudimg-amd64-root.tar.gz /
-# wget https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz  (46MB)
-## ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
+# wget https://partner-images.canonical.com/core/jammy/current/ubuntu-jammy-core-cloudimg-amd64-root.tar.gz  (28MB)
+ADD ubuntu-jammy-core-cloudimg-amd64-root.tar.gz /
+# wget https://partner-images.canonical.com/core/jammy/current/ubuntu-jammy-core-cloudimg-amd64-root.tar.gz  (46MB)
+## ADD ubuntu-jammy-core-cloudimg-amd64-root.tar.gz /
 
 # a few minor docker-specific tweaks
 # see https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap
@@ -58,7 +58,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
 # certificates manager x.509  CRL OCSP GnuPG
 		dirmngr \
 		nano \
-    python \
+       python3 \
 # shell json parser
     jq \
 #   nfs-common \
@@ -101,3 +101,4 @@ ENV JSYAML_VERSION 3.10.0
 #WORKDIR /home
 # overwrite this with 'CMD []' in a dependent Dockerfile
 CMD ["/bin/bash"]
+ 
