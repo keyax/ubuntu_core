@@ -1,12 +1,12 @@
-# ubuntu-core image for docker minimal os  release 18.04 LTS Bionic Beaver
+# ubuntu-core image for docker minimal os  release 22.04 LTS Jammy Jellyfish
 
 Keyax built of linux Ubuntu Core container
 
 This Linux base image is built from scratch on Canonical binaries based on Ubuntu Core release 18.04 code named Bionic Beaver and is specially configured to run on Docker containers and it provides the basic tools to build other dependent images like Nodejs and Mongodb to construct scalable Swarm clusters.
 
-Supported tags and respective Dockerfile links: 18.04, keyax, bionic, docker, swarm
+Supported tags and respective Dockerfile links: 22.04, keyax, jammy, docker, swarm, kubernetes
 
-# 18.04, keyax, bionic, docker, swarm
+# 22.04, keyax, jammy, docker, swarm, kubernetes, k8s
 
 The information about the virtual/transfer sizes and individual layers of the image is provided by Imagebadger as follows:
 
